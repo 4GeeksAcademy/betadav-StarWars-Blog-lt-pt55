@@ -12,6 +12,23 @@ export const initialStore=()=>{
         title: "Do my homework",
         background: null,
       }
+    ],
+    personajes: [
+      {
+        id: 1,
+        title: "personaje 1",
+        background: null,
+      },
+      {
+        id: 2,
+        title: "personaje 2",
+        background: null,
+      },
+      {
+        id: 3,
+        title: "personaje 3",
+        background: null,
+      }
     ]
   }
 }
