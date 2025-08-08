@@ -1,16 +1,54 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";  // Custom hook for accessing the global state.
+import { useEffect, useState } from "react";
+import CardCharacter from "../components/CardCharacter";
+import CardPlanet from "../components/CardPlanet";
 
 export const Home = () => {
 
-  const {store, dispatch} =useGlobalReducer()
+	const { store, dispatch } = useGlobalReducer()
+
+	const [characters, setCharacters] = useState([])
+	const [planets, setPlanets] = useState([])
+
+	function getCharacters() {
+		fetch('https://www.swapi.tech/api/people/')
+			.then((response) => response.json())
+			.then((data) => setCharacters(data.results))
+	}
+
+	function getPlanets() {
+		fetch('https://www.swapi.tech/api/planets/')
+			.then((response) => response.json())
+			.then((data) => setPlanets(data.results))
+	}
+
+	useEffect(() => {
+		getCharacters()
+		getPlanets()
+	}, [])
 
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
+		<div className="container text-center">
+			<div className="d-flex justify-content-center">
+				<div className="row">
+					<div className="row">
+						<h1>
+							Characters
+						</h1>
+						{/* Map over the 'characters' array from the store and render each item as a list element */}
+						{characters.map((personaje) => <CardCharacter key={personaje.uid} name={personaje.name} uid={personaje.uid} />)}
+					</div>
+					<div className="row">
+						<h1>
+							Planets
+						</h1>
+						{/* Map over the 'characters' array from the store and render each item as a list element */}
+						{planets.map((planet) => <CardPlanet key={planet.uid} name={planet.name} uid={planet.uid} />)}
+					</div>
+				</div>
+			</div>
 		</div>
+
 	);
-}; 
+};
