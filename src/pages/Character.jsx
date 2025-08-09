@@ -14,20 +14,37 @@ export const Character = props => {
   const { characterId } = useParams()
 
   function getCharacters() {
-		fetch(`https://www.swapi.tech/api/people/${characterId}`)
-			.then((response) => response.json())
-			.then((data) => setCharacter(data.result.properties))
-	}
+    fetch(`https://www.swapi.tech/api/people/${characterId}`)
+      .then((response) => response.json())
+      .then((data) => setCharacter(data.result.properties))
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     getCharacters()
   }, [])
 
   return (
     <div className="container text-center">
-      {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
-      <h1 className="display-4">Personaje: {character.name}</h1>
+      <div className="row">
+        <div className="col-6">
+          <img src="https://picsum.photos/500/300" alt="" />
+        </div>
+        <div className="col-6">
+          {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
+          <h1 className="display-4">{character.name}</h1>
+        </div>
+      </div>
       <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
+      <div>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">Gender: {character.gender}</li>
+          <li className="list-group-item">Height: {character.height}</li>
+          <li className="list-group-item">Eyes color: {character.eye_color}</li>
+          <li className="list-group-item">Skin color: {character.skin_color}</li>
+          <li className="list-group-item">Hair color: {character.hair_color}</li>
+        </ul>
+      </div>
+
 
       {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
       <Link to="/">

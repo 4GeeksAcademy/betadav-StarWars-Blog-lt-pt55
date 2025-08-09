@@ -10,22 +10,37 @@ export const Planet = props => {
 
   // Retrieve the 'theId' URL parameter using useParams hook.
   const { planetId } = useParams()
-  console.log(useParams())
 
   function getPlanets() {
-		fetch(`https://www.swapi.tech/api/planets/${planetId}`)
-			.then((response) => response.json())
-			.then((data) => setPlanet(data.result.properties))
-	}
+    fetch(`https://www.swapi.tech/api/planets/${planetId}`)
+      .then((response) => response.json())
+      .then((data) => setPlanet(data.result.properties))
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     getPlanets()
   }, [])
   return (
     <div className="container text-center">
-      {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
-      <h1 className="display-4">Planet: {planet.name}</h1>
+      <div className="row">
+        <div className="col-6">
+          <img src="https://picsum.photos/500/300" alt="" />
+        </div>
+        <div className="col-6">
+          {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
+          <h1 className="display-4">{planet.name}</h1>
+        </div>
+      </div>
       <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
+      <div>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">Weaher: {planet.climate}</li>
+          <li className="list-group-item">Diameter: {planet.diameter}</li>
+          <li className="list-group-item">Rotation period: {planet.rotation_period}</li>
+          <li className="list-group-item">Terrain: {planet.terrain}</li>
+          <li className="list-group-item">Population: {planet.population}</li>
+        </ul>
+      </div>
 
       {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
       <Link to="/">

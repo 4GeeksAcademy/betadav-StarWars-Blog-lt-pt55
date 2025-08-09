@@ -1,5 +1,5 @@
-export const initialStore=()=>{
-  return{
+export const initialStore = () => {
+  return {
     message: null,
     personajes: [],
     planetas: [],
@@ -9,10 +9,10 @@ export const initialStore=()=>{
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
+  switch (action.type) {
     case 'add_task':
 
-      const { id,  color } = action.payload
+      const { id, color } = action.payload
 
       return {
         ...store,
@@ -20,18 +20,33 @@ export default function storeReducer(store, action = {}) {
       };
     case 'add_to_favorite_characters':
 
-      return {
-        ...store,
-        favoriteCharacters: [...store.favoriteCharacters, action.payload]
-      };
-    case 'add_to_favorite_planets':
+      let favCharacters = []
+      if (store.favoriteCharacters.includes(action.payload)) {
+        favCharacters = store.favoriteCharacters.filter((character) => character != action.payload)
+
+      } else {
+        favCharacters = [...store.favoriteCharacters, action.payload]
+      }
 
       return {
         ...store,
-        favoritePlanets: [...store.favoritePlanets, action.payload]
+        favoriteCharacters: favCharacters
       };
-    
+    case 'add_to_favorite_planets':
+      let favplanets = []
+      if (store.favoritePlanets.includes(action.payload)) {
+        favplanets = store.favoritePlanets.filter((planet) => planet != action.payload)
+
+      } else {
+        favplanets = [...store.favoritePlanets, action.payload]
+      }
+
+      return {
+        ...store,
+        favoritePlanets: favplanets
+      };
+
     default:
       throw Error('Unknown action.');
-  }    
+  }
 }

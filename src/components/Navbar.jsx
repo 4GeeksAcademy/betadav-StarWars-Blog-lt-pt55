@@ -13,18 +13,35 @@ export const Navbar = () => {
 
 				<div className="ml-auto">
 					<div className="btn-group">
-						<button type="button" className="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							Action
+						<button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							Favorites
+							<span className="badge text-bg-secondary mx-1">{store.favoriteCharacters.length + store.favoritePlanets.length}</span>
 						</button>
 						<ul className="dropdown-menu">
 							<li>{store.favoriteCharacters.map((favorite, index) =>
-								<p key={index}>{favorite}</p>
+								<p key={index}>
+									{favorite}
+									<button className="mx-2" onClick={() => dispatch(
+										{
+											type: 'add_to_favorite_characters',
+											payload: favorite
+										}
+									)}>X</button>
+								</p>
 							)}</li>
 							<li>{store.favoritePlanets.map((favorite, index) =>
-								<p key={index}>{favorite}</p>
+								<p key={index}>
+									{favorite}
+									<button className="mx-2" onClick={() => dispatch(
+										{
+											type: 'add_to_favorite_planets',
+											payload: favorite
+										}
+									)}>X</button>
+								</p>
 							)}</li>
 						</ul>
-						
+
 					</div>
 				</div>
 			</div>
