@@ -7,13 +7,15 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
+				<div className="">
+					<Link to="/">
+						<img className="logo" src="https://www.freepnglogos.com/uploads/star-wars-logo-31.png" alt="" />					
+					</Link>
+				</div>
 
 				<div className="ml-auto">
 					<div className="btn-group">
-						<button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+						<button type="button" className="btn btn-primary dropdown-toggle btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
 							Favorites
 							<span className="badge text-bg-secondary mx-1">{store.favoriteCharacters.length + store.favoritePlanets.length}</span>
 						</button>
@@ -21,23 +23,27 @@ export const Navbar = () => {
 							<li>{store.favoriteCharacters.map((favorite, index) =>
 								<p key={index}>
 									{favorite}
-									<button className="mx-2" onClick={() => dispatch(
+									<button className="mx-2 border border-0 bg-transparent" onClick={() => dispatch(
 										{
 											type: 'add_to_favorite_characters',
 											payload: favorite
 										}
-									)}>X</button>
+									)}>
+										<i className="fa-solid fa-trash"></i>
+									</button>
 								</p>
 							)}</li>
 							<li>{store.favoritePlanets.map((favorite, index) =>
 								<p key={index}>
 									{favorite}
-									<button className="mx-2" onClick={() => dispatch(
+									<button className="mx-2 border border-0 bg-transparent" onClick={() => dispatch(
 										{
 											type: 'add_to_favorite_planets',
 											payload: favorite
 										}
-									)}>X</button>
+									)}>
+										<i className="fa-solid fa-trash"></i>
+									</button>
 								</p>
 							)}</li>
 						</ul>

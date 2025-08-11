@@ -32,6 +32,7 @@ export const Character = props => {
         <div className="col-6">
           {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
           <h1 className="display-4">{character.name}</h1>
+          <p>{store.description}</p>
         </div>
       </div>
       <hr className="my-4" />  {/* A horizontal rule for visual separation. */}

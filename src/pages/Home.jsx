@@ -31,9 +31,11 @@ export const Home = () => {
 	return (
 		<div className="container text-center">
 			<div className="my-5">
-				<h1>
-					Characters
-				</h1>
+				<div className="d-flex justify-content-start m-3">
+					<h1 className="text-danger">
+						Characters
+					</h1>
+				</div>
 				<div className="row flex-row overflow-x-scroll flex-nowrap">
 					{/* Map over the 'characters' array from the store and render each item as a list element */}
 					{characters.map((personaje) => <CardCharacter key={personaje.uid} name={personaje.name} uid={personaje.uid} />)}
@@ -41,9 +43,11 @@ export const Home = () => {
 			</div>
 
 			<div className="">
-				<h1>
-					Planets
-				</h1>
+				<div className="d-flex justify-content-start m-3">
+					<h1 className="text-danger">
+						Planets
+					</h1>
+				</div>
 				<div className="row flex-row overflow-x-scroll flex-nowrap">
 					{/* Map over the 'characters' array from the store and render each item as a list element */}
 					{planets.map((planet) => <CardPlanet key={planet.uid} name={planet.name} uid={planet.uid} />)}
