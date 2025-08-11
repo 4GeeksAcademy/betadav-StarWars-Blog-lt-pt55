@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
 const CardCharacter = (props) => {
     const { store, dispatch } = useGlobalReducer()
+    const [isActive, setIsActive] = useState(false)
+    const handleClick = () => {
+        setIsActive(!isActive);
+    };
     return (
         <div className="card mx-3" style={{ width: "auto" }}>
             <img src="https://picsum.photos/400/200" className="card-img-top" alt="..." />
@@ -14,7 +18,7 @@ const CardCharacter = (props) => {
                 <div>
                     {/* Link to the detail page of this todo. */}
                     <Link to={"/character/" + props.uid}><button className="btn btn-outline-primary mx-2">Learn more</button></Link>
-                    <button className="btn btn-outline-warning" onClick={()=>dispatch({
+                    <button className="btn btn-outline-warning" onClick={() => dispatch({
                         type: "add_to_favorite_characters",
                         payload: props.name
                     })}><i className="fa-regular fa-heart"></i></button>
