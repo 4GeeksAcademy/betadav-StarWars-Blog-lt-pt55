@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
 const CardCharacter = (props) => {
     const { store, dispatch } = useGlobalReducer()
-    const [isActive, setIsActive] = useState(false)
-    const handleClick = () => {
-        setIsActive(!isActive);
-    };
+    const [isActive, setIsActive] = useState(null)
+
+    useEffect(() => {
+        if (store.favoriteCharacters.includes(props.name)) {
+            setIsActive(true)
+        } else {
+            setIsActive(false)
+        }
+    }, [store.favoriteCharacters])
+
     return (
         <div className="card mx-3" style={{ width: "auto" }}>
             <img src="https://picsum.photos/400/200" className="card-img-top" alt="..." />
@@ -21,7 +27,7 @@ const CardCharacter = (props) => {
                     <button className="btn btn-outline-warning" onClick={() => dispatch({
                         type: "add_to_favorite_characters",
                         payload: props.name
-                    })}><i className="fa-regular fa-heart"></i></button>
+                    })}><i className={isActive ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i></button>
                 </div>
             </div>
         </div>

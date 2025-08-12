@@ -36,23 +36,34 @@ export const Character = props => {
         </div>
       </div>
       <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
-      <div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">Gender: {character.gender}</li>
-          <li className="list-group-item">Height: {character.height}</li>
-          <li className="list-group-item">Eyes color: {character.eye_color}</li>
-          <li className="list-group-item">Skin color: {character.skin_color}</li>
-          <li className="list-group-item">Hair color: {character.hair_color}</li>
-        </ul>
+      <div className="container text-center text-danger">
+        <div className="row">
+          <div className="col">
+            <p className="fw-bold">Name</p>
+            <p>{character.name}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Birth year</p>
+            <p>{character.birth_year}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Gender</p>
+            <p>{character.gender}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Height</p>
+            <p>{character.height}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Skin color</p>
+            <p>{character.skin_color}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Eyes color</p>
+            <p>{character.hair_color}</p>
+          </div>
+        </div>
       </div>
-
-
-      {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
-      <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
-          Back home
-        </span>
-      </Link>
     </div>
   );
 };

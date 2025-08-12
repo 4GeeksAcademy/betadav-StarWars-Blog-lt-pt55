@@ -33,22 +33,34 @@ export const Planet = props => {
         </div>
       </div>
       <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
-      <div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">Weaher: {planet.climate}</li>
-          <li className="list-group-item">Diameter: {planet.diameter}</li>
-          <li className="list-group-item">Rotation period: {planet.rotation_period}</li>
-          <li className="list-group-item">Terrain: {planet.terrain}</li>
-          <li className="list-group-item">Population: {planet.population}</li>
-        </ul>
+      <div className="container text-center text-danger">
+        <div className="row">
+          <div className="col">
+            <p className="fw-bold">Name</p>
+            <p>{planet.name}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Climate</p>
+            <p>{planet.climate}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Diameter</p>
+            <p>{planet.diameter}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Terrain</p>
+            <p>{planet.terrain}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Orbital period</p>
+            <p>{planet.orbital_period}</p>
+          </div>
+          <div className="col">
+            <p className="fw-bold">Population</p>
+            <p>{planet.population}</p>
+          </div>
+        </div>
       </div>
-
-      {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
-      <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
-          Back home
-        </span>
-      </Link>
     </div>
   );
 };
